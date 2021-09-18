@@ -25,3 +25,60 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## NOTAS
+
+- Componentes
+
+  - El archivo `app.<nombre del componente>.component.ts` define la logica del componente
+    `app.mycomponent.component.ts`
+
+    ```typescript
+    import { Component, OnInit } from "@angular/core";
+
+    // decorador
+    @Component({
+      // nombre del tag html de este componente (<app-mycomponent></app-mycomponent>)
+      selector: "app-mycomponent",
+
+      // vinculamos la vista con la logica
+      templateUrl: "./mycomponent.component.html",
+
+      // vinculamos el style con la logica
+      styleUrls: ["./mycomponent.component.css"],
+    })
+    export class MycomponentComponent implements OnInit {
+      constructor() {}
+
+      ngOnInit(): void {}
+    }
+    ```
+
+- El archivo `src/app/app.module.ts` es el encargado de entender que componentes y dependencias tenemos en nuestra app. Si el componente es creado pero no esta declarado ahi, no podra ser utilizado.
+
+  ```typescript
+  @NgModule({
+    declarations: [
+      // vistas que pertenecen a tu modulo
+      AppComponent,
+      MycomponentComponent,
+    ],
+    imports: [
+      // modulos importados (otros ngModules cuyas clases exportadas son requeridas por templates de este modulo)
+      BrowserModule,
+      AppRoutingModule,
+    ],
+
+    // servicios que necesita este modulo y que estaran disponibles para toda la app
+    providers: [],
+
+    // componente principal (define la vista root)
+    bootstrap: [AppComponent],
+    // exports: serian los conjuntos de declaraciones que deben ser accesibles desde otros modulos
+  })
+  export class AppModule {}
+  ```
+
+```
+
+```
